@@ -1,4 +1,4 @@
-from __future__ import print_function
+
 
 import collections
 import datetime
@@ -373,7 +373,7 @@ _roles_descr = {
 }
 
 
-_roles = _roles_descr.keys()
+_roles = list(_roles_descr.keys())
 
 _default_roles = [
     "assignment_add_own",
@@ -431,14 +431,14 @@ def gen_flatten_data(data):
     """
     #python 3 hack to basestr
     try:
-        u = unicode
+        u = str
     except NameError:
         # 'unicode' is undefined, must be Python 3
         check_type = str
     else:
         # 'unicode' exists, must be Python 2
 
-        check_type = basestring
+        check_type = str
 
     for el in data:
         if isinstance(el, collections.Iterable) and not isinstance(el, check_type):
@@ -489,7 +489,7 @@ def list_to_blob(data):
     "strings|with&delimiter;surprise"
     """
     def prepare_item(p_item):
-        if not isinstance(p_item, basestring):
+        if not isinstance(p_item, str):
             item_str = repr(p_item)
         else:
             item_str = p_item

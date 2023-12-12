@@ -1,4 +1,4 @@
-from __future__ import print_function
+
 
 from .console_context import ConsoleContext
 from .themes import NoColorTheme
@@ -43,10 +43,10 @@ class ConsoleUtilBase(object):
 
     def read_multiline(self):
         user_input = []
-        entry = raw_input("Enter comment text, put 'EOF' on its own line to quit: \n")
+        entry = input("Enter comment text, put 'EOF' on its own line to quit: \n")
 
         while entry != "EOF":
             user_input.append(entry)
-            entry = raw_input("")
+            entry = input("")
         return user_input
 
