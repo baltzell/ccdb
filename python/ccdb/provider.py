@@ -80,7 +80,7 @@ class AlchemyProvider(object):
         except ImportError as err:
             #sql alchemy uses MySQLdb by default. But it might not be installed in the system
             #in such case we fallback to mysqlconnector which is included in CCDB
-            if connection_string.startswith("mysql://") and "No module named MySQLdb" in repr(err):
+            if connection_string.startswith("mysql://") and ( "No module named MySQLdb" in repr(err) or "No module named 'MySQLdb'" in repr(err)):
                 connection_string = connection_string.replace("mysql://", "mysql+mysqlconnector://")
                 self.engine = sqlalchemy.create_engine(connection_string)
             else:
