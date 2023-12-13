@@ -45,7 +45,7 @@ def get_ccdb_home_path():
 
 def init_ccdb_console():
     from .cmd import ConsoleContext
-    from . import cmd.colorama
+    from .cmd import colorama
 
     # TODO move ccdb to pure logging. NO print command at all
 
@@ -71,7 +71,7 @@ def init_ccdb_console():
     else:
         logger.setLevel(logging.INFO)
 
-    cmd.colorama.init(autoreset=True)
+    colorama.init(autoreset=True)
 
     if "--no-color" in sys.argv:
         # no colors for output
