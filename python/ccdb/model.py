@@ -7,7 +7,7 @@ import posixpath
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.schema import Column, ForeignKey
 from sqlalchemy.types import Integer, String, Text, DateTime, Enum, Boolean
-from sqlalchemy.orm import reconstructor, relation
+from sqlalchemy.orm import reconstructor
 from sqlalchemy.orm import relationship, backref
 
 Base = declarative_base()
@@ -267,8 +267,8 @@ class Variation(Base):
     comment = Column(Text)
     author_id = Column('authorId', Integer, default=1)
     parent_id = Column('parentId', Integer, ForeignKey('variations.id'), default=1)
-    parent = relation('Variation', remote_side=[id])
-    children = relation("Variation")
+    parent = relationship('Variation', remote_side=[id])
+    children = relationship("Variation")
 
     def __repr__(self):
         return "<Variation {0} '{1}'>".format(self.id, self.name)
