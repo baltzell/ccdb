@@ -268,7 +268,7 @@ class Variation(Base):
     author_id = Column('authorId', Integer, default=1)
     parent_id = Column('parentId', Integer, ForeignKey('variations.id'), default=1)
     parent = relationship('Variation', remote_side=[id])
-    children = relationship("Variation")
+    children = relationship('Variation',viewonly=True)
 
     def __repr__(self):
         return "<Variation {0} '{1}'>".format(self.id, self.name)
