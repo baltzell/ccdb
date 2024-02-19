@@ -7,7 +7,7 @@ ccdb::PthreadSyncObject::PthreadSyncObject():ISyncObject()
     int result = pthread_mutex_init(&mPthreadMutex, NULL);
 
     //check object properly created
-    if (result != 0) throw("ISyncObject* ccdb::PthreadSyncObject::CreateSyncObject() error creating mutex: %d\n", result);
+    if (result != 0) throw("ISyncObject* ccdb::PthreadSyncObject::CreateSyncObject() error creating mutex.\n");
 
 }
 //______________________________________________________________________________
