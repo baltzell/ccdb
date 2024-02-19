@@ -3,8 +3,8 @@ import os
 
 #Setup default environment. This environment 
 if not 'CCDB_HOME' in os.environ:
-    print "CCDB_HOME environment variable is not found but should be set to compile the CCDB"
-    print "One can run 'source environment.bash' from your bash shell to automatically set environment variables"
+    print("CCDB_HOME environment variable is not found but should be set to compile the CCDB")
+    print("One can run 'source environment.bash' from your bash shell to automatically set environment variables")
     exit(1)
 
 #Create 'default' environment. Other environments will be a copy of this one
@@ -15,7 +15,7 @@ default_env = Environment(
 )
 
 #Read user flag for using mysql dependencies or not
-if ARGUMENTS.get("clang","false")=="true":	
+if ARGUMENTS.get("clang","false")=="true":
     default_env["CXX"] = "clang++"
     default_env["ENV"]["TERM"]=os.environ["TERM"]
 
@@ -35,5 +35,4 @@ if ARGUMENTS.get("with-examples","false")=="true":
     SConscript('examples/SConscript', 'default_env', variant_dir='tmp/Examples', duplicate=0)
 else:
     print("Building without examples. To build with examples add 'with-examples=true' flag")
-    
 
