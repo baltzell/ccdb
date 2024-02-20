@@ -39,8 +39,15 @@ if(APPLE)
         set(CMAKE_INSTALL_RPATH "${CMAKE_LIBRARY_OUTPUT_DIRECTORY}")
     ENDIF("${isSystemDir}" STREQUAL "-1")
 
-    link_directories(/opt/homebrew/opt/zstd/lib)
-    link_directories(/opt/homebrew/opt/openssl/lib)
+    # homebrew:
+    find_program(BREW_EXE brew NO_CACHE)
+    if(BREW_EXE STREQUAL "BREW_EXE-NOTFAOUND")
+        message(WARNING "Homebrew could not be found.")
+    else()
+        execute_process(COMMAND ${BREW_EXE} --prefix
+            OUTPUT_VARIABLE BREW_PREFIX OUTPUT_STRIP_TRAILING_WHITESPACE)
+        link_directories(${BREW_PREFIX}/lib)
+    endif()
 
 endif(APPLE)
 
