@@ -13,3 +13,6 @@ cmake_minimum_required(VERSION 3.3)
 project(CCDB_Project)
 
 add_subdirectory(src)
+
+install(PROGRAMS bin/ccdb DESTINATION ${CMAKE_INSTALL_PREFIX}/bin)
+
