@@ -38,6 +38,9 @@ if(APPLE)
     IF("${isSystemDir}" STREQUAL "-1")
         set(CMAKE_INSTALL_RPATH "${CMAKE_LIBRARY_OUTPUT_DIRECTORY}")
     ENDIF("${isSystemDir}" STREQUAL "-1")
+
+    # find homebrew libraries:
+    link_directories(/opt/homebrew/lib)
 endif(APPLE)
 
 # Set a default build type if none was specified
