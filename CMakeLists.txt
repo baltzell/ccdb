@@ -15,4 +15,5 @@ project(CCDB_Project)
 add_subdirectory(src)
 
 install(PROGRAMS bin/ccdb DESTINATION ${CMAKE_INSTALL_PREFIX}/bin)
+install(DIRECTORY python DESTINATION ${CMAKE_INSTALL_PREFIX})
 
