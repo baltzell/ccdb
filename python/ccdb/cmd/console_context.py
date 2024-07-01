@@ -1,7 +1,6 @@
 
 import os
 import re
-import imp
 import sys
 import logging
 import shlex
@@ -169,9 +168,9 @@ class ConsoleContext(object):
                         self._ls = util
 
             except AttributeError as ex:
-                log.debug("Error registering module : " + repr(ex))
+                log.warning("Error registering module : " + repr(ex))
             except Exception as ex:
-                log.debug("Error registering module : " + repr(ex))
+                log.warning("Error registering module : " + repr(ex))
 
         if log.isEnabledFor(logging.DEBUG):
             log.debug(lfm("{0}Utils found and registered in directory '{1}' are:", os.linesep, path))
@@ -208,11 +207,19 @@ class ConsoleContext(object):
             if m.startswith('__'):
                 continue
             try:
-                f, filename, desc = imp.find_module(m, [path])
-                modules.append(imp.load_module(m, f, filename, desc))
+                if sys.version_info < (3,12):
+                    import imp
+                    f, filename, desc = imp.find_module(m, [path])
+                    modules.append(imp.load_module(m, f, filename, desc))
+                else:
+                    import importlib
+                    x = importlib.util.spec_from_file_location('ccdb.cmd.utils.'+m, os.path.dirname(__file__)+'/utils/%s.py'%m)
+                    y = importlib.util.module_from_spec(x)
+                    x.loader.exec_module(y)
+                    modules.append(y)
             except ImportError as ex:
-                log.debug(lfm(" |- error importing module: {0}", m))
-                log.debug(lfm(" |\\{0} ||-{1}", os.linesep, repr(ex)))
+                log.warning(lfm(" |- error importing module: {0}", m))
+                log.warning(lfm(" |\\{0} ||-{1}", os.linesep, repr(ex)))
                 continue
 
         return modules
