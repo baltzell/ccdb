@@ -16,4 +16,5 @@ add_subdirectory(src)
 
 install(PROGRAMS bin/ccdb DESTINATION ${CMAKE_INSTALL_PREFIX}/bin)
 install(DIRECTORY python DESTINATION ${CMAKE_INSTALL_PREFIX})
+install(DIRECTORY scripts DESTIONATION ${CMAKE_INSTALL_PREFIX})
 
