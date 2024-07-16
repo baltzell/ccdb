@@ -8,7 +8,7 @@ import select
 
 #-------------------------------------------------------------------------------------------------------------
 def print_help():
-    print """
+    print("""
 This utility can add users to ccdb database by user names.
 The idea behind this utility is to recreate users list from cronjob.
 
@@ -27,7 +27,7 @@ Examples:
     echo "anna,bob,smith' | python users_create.py mysql://ccdb_user@localhost/ccdb
 
 The scripts fails if no '--recreate' flag is given and a user exists.
-    """
+    """)
 
 
 #-------------------------------------------------------------------------------------------------------------
@@ -52,7 +52,7 @@ def delete_users(provider):
         if not user.name in god_list:
             provider.delete_user(user.name)
             deleted_count += 1
-    print ("Users deleted {}".format(deleted_count))
+    print(("Users deleted {}".format(deleted_count)))
 
 
 #-------------------------------------------------------------------------------------------------------------
@@ -90,9 +90,9 @@ def create_users(provider, user_names):
             provider.create_user(name)
             count += 1
         except UserExistsError as err:
-            print(err.message)
+            print((err.message))
 
-    print("Users created: {}".format(len(user_names)))
+    print(("Users created: {}".format(len(user_names))))
 
 
 #-------------------------------------------------------------------------------------------------------------
@@ -123,7 +123,7 @@ if __name__ == "__main__":
         print("Error! No connection string given!")
         print_help()
         sys.exit(1)
-    print ("Connecting to '" + connection_str + "'")
+    print(("Connecting to '" + connection_str + "'"))
 
 
     provider = get_provider(connection_str)
@@ -135,12 +135,12 @@ if __name__ == "__main__":
         try:
             delete_users(provider)
         except Exception as ex:
-            print("User deletion failed with error of type {} : {}".format(type(ex),ex.message))
+            print(("User deletion failed with error of type {} : {}".format(type(ex),ex.message)))
             sys.exit(2)
 
     #create new users
     try:
         create_users(provider, names)
     except Exception as ex:
-        print("User creation failed with error of type {} : {}".format(type(ex),ex.message))
+        print(("User creation failed with error of type {} : {}".format(type(ex),ex.message)))
         sys.exit(3)
