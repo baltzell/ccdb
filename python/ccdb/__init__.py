@@ -32,6 +32,11 @@ from . import path_utils
 #the default ccdb logger
 logger = logging.getLogger("ccdb")
 
+for x in ['engine.Engine','orm.mapper.Mapper',
+        'orm.relationships.RelationshipProperty',
+        'orm.strategies.LazyLoader']:
+    logging.getLogger('sqlalchemy.'+x).setLevel(logging.ERROR)
+
 INFINITE_RUN = 2147483647
 
 def get_ccdb_home_path():
