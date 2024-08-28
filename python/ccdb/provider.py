@@ -50,7 +50,7 @@ class AlchemyProvider(object):
         self.path_name_regex = re.compile('^[\w\-_]+$', re.IGNORECASE)
         self._connection_string = ""
         self._auth = Authentication(self)
-        self._auth.current_user_name = "anonymous"
+        self._auth.current_user_name = str(os.getenv("CCDB_USER"),"anonymous")
         self.logging_enabled = True
         self._no_structure_message = "No database structure found. Possibly you are trying to connect " + \
                                      "to wrong SQLite file or to MySQL database without schema. " + \
