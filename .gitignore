@@ -6,9 +6,7 @@ tmp/
 .sconsign.dblite
 
 #swp
-src/Tests/.*.swp
-
-
+*.swp
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
