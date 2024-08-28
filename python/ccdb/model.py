@@ -1,6 +1,6 @@
 
 
-import collections
+import collections.abc
 import datetime
 import posixpath
 
@@ -441,7 +441,7 @@ def gen_flatten_data(data):
         check_type = str
 
     for el in data:
-        if isinstance(el, collections.Iterable) and not isinstance(el, check_type):
+        if isinstance(el, collections.abc.Iterable) and not isinstance(el, check_type):
             for sub in gen_flatten_data(el):
                 yield sub
         else:
