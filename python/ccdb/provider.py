@@ -413,7 +413,7 @@ class AlchemyProvider(object):
         self.root_dir.sub_dirs = []
 
         #begin loop through the directories
-        for directory in list(directories.values()):
+        for directory in [directories.get(x) for x in sorted(directories.keys())]:
             assert (isinstance(directory, Directory))
 
             parent_dir = self.root_dir
