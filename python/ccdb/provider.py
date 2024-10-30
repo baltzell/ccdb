@@ -87,7 +87,7 @@ class AlchemyProvider(object):
                 raise
 
         #
-        session_type = sqlalchemy.orm.sessionmaker(bind=self.engine)
+        session_type = sqlalchemy.orm.sessionmaker(bind=self.engine, autoflush=True)
         self.session = session_type()
         self._is_connected = True
         self._connection_string = connection_string
