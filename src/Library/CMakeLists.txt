@@ -104,7 +104,7 @@ foreach(_include_sub "CCDB" "CCDB/Providers" "CCDB/Model" "CCDB/Helpers" "SQLite
      "../../include/${_include_sub}/*.h"
      )
     install(FILES ${CCDB_HEADERS_EXPORT_${_include_sub}}
-        DESTINATION ${CMAKE_INSTALL_PREFIX}/include/ccdb/${_include_sub})
+        DESTINATION ${CMAKE_INSTALL_PREFIX}/include/${_include_sub})
 endforeach(_include_sub IN CCDB SQLite)
 
 write_basic_package_version_file(
